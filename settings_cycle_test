@@ -6,9 +6,12 @@ STARTDATE=2016010118
 ENDDATE=2016010318
 
 # temporary directory where experiment is run from
-export WORKDIR=/scratch2/BMC/gsienkf/${USER}/workdir/
+#export WORKDIR=/scratch2/BMC/gsienkf/${USER}/workdir/
+export WORKDIR=/scratch2/NCEPDEV/land/${USER}/workdir/
+
 # directory where output is saved
-export OUTDIR=/scratch2/BMC/gsienkf/${USER}/cycle_land/${exp_name}/
+#export OUTDIR=/scratch2/BMC/gsienkf/${USER}/cycle_land/${exp_name}/
+export OUTDIR=/scratch2/NCEPDEV/land/${USER}/landDA/cycle_land/${exp_name}/
 
 ############################
 

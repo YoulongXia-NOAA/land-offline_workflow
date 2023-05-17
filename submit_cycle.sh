@@ -1,11 +1,12 @@
 #!/bin/bash -le 
 #SBATCH --job-name=offline_noahmp
-#SBATCH --account=gsienkf
-#SBATCH --qos=debug
+#SBATCH --account=da-cpu
+#SBATCH --qos=batch
 #SBATCH --nodes=1
-#SBATCH --tasks-per-node=6
+#SBATCH --tasks-per-node=32
 #SBATCH --cpus-per-task=1
-#SBATCH -t 00:10:00
+#SBATCH --mem-per-cpu=5G
+#SBATCH -t 07:55:00
 #SBATCH -o log_noahmp.%j.log
 #SBATCH -e err_noahmp.%j.err
 
@@ -171,7 +172,12 @@ while [ $date_count -lt $cycles_per_job ]; do
     echo '************************************************'
     echo "calling model"
     echo $MEM_WORKDIR
-    srun -n 1 $LSMexec 
+    # reset the modules required for land model
+    module load intel/2022.2.0
+    module load impi/2022.2.0
+    module load netcdf-hdf5parallel/4.7.4
+
+    srun -n 32 $LSMexec 
     # no error codes on exit from model, check for restart below instead
 
     ############################
